@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tumor predictions</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	</head>
+	<body>
+    
+    <!-- Nav bar -->  
+<nav class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <span class="navbar-brand d-flex align-items-center" href="#"><strong>Tumor predictions</strong></span>
+  </div>
+</nav>
+<!-- Nav bar -->
+ 
+  <section>
+     <div class="pogo py-5 container" >
+       
+      <div class="accordion" id="accordionExample" style="width: 90%;">
+
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Neuro
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              
+              <ul class="unorderedList">
+                <li>Mass</li>
+                <ul>
+                 <li>Intr-axial</li>
+                   <ul>
+                   <li>Supratentorial</li>
+                     <li>Infratentorial</li>
+                  </ul>
+                  <li>Intraventricular</li>
+                     <ul>
+                   <li>Supratentorial</li>
+                     <li>Infratentorial</li>
+                  </ul>
+                  <li>Extra-axial</li>
+                  <li>Sellar supresellar</li>
+                  <li>Pineal masses</li>
+                  <li>CP angle masses</li>
+                  <li>Cystic masses</li>
+                </ul>
+                 <li>White matter changes</li>
+                 <ul>
+                   <li>Adult</li>
+                   <li>Paediatric</li>
+                  </ul>
+                  <li>Charii vs intracranial hypertension</li>
+               </ul>   <!--end of unorderdlist -->
+            </div>
+          </div>
+        </div> <!--end of main items -->
+
+
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Thoracic
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              
+              <ul class="unorderedList">
+                <li>Pulmonary nodule</li>
+                <ul>
+                 <li>Solid</li>
+                  <li>Cavitating</li>
+                  </ul>
+                  <li>Diffuse lung disease</li>
+               </ul>   <!--end of unorderdlist -->
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Gastrointestinal
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              
+              <ul class="unorderedList">
+                <li>Pancreatic masses</li>
+                <ul>
+                 <li>Solid</li>
+                  <li>Cystic</li>
+                  </ul>
+                  <li>Focal liver lesions</li>
+                  <li>Pattren of small bowel enhancement
+
+                  </li>
+               </ul>   <!--end of unorderdlist -->
+            </div>
+          </div>
+        </div> <!--end of main items -->
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Genitourinary
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              
+              <ul class="unorderedList">
+                <li><a href="{{ url_for('ovary') }}" class="link-primary">Ovarian tumors</a></li>
+                  <li>Lesions in the transitional zone of the prostate</li>
+               </ul>   <!--end of unorderdlist -->
+            </div>
+          </div>
+        </div> <!--end of main items -->
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              MSK
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              
+              <ul class="unorderedList">
+                <li>Benign vs malignant spinal tumors</li>
+                  <li>Neurofibroma versus neurolemmoma of the peripheral nerves</li>
+                  <li>Diffuse muscle disease</li>
+               </ul>   <!--end of unorderdlist -->
+            </div>
+          </div>
+        </div> <!--end of main items -->
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Others
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              
+              <ul class="unorderedList">
+                <li>Ultrasound of thyroid nodules</li>
+                  <li>Ultrasound of breast lesions</li>
+               </ul>   <!--end of unorderdlist -->
+            </div>
+          </div>
+        </div> <!--end of main items -->
+
+
+      </div> <!--end of accordin -->
+</div><!-- Pogo ends here -->
+</section> <!-- Pogo ends here -->
+
+      
+    
+<section class="py-5 text-center container" style="padding: 0;">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Prediction with given imaging features</h1>
+      <p class="lead text-muted">With mathematical formula developed based bayesian interpretation where the sensitivity of imaging findings modifies the posterior distribution to likelihood probabality.</p>
+      <p>
+        <a href="#" class="btn btn-primary my-2">More info here</a>
+        <a href="#" class="btn btn-secondary my-2">Disclaimer</a>
+      </p>
+    </div>
+  </div>
+</section>
+  <!--info ends -->
+
+
+  <!-- footer -->
+  
+  <!-- End of everything -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	</body>
+</html>
