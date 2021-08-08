@@ -33,6 +33,21 @@ def ovary_predict():
         return render_template('ovary.html', 
                                data = {**first, **result1})
 
+
+@app.route('/thyroid')
+def thyroid():
+    return render_template('thyroid.html')
+
+@app.route('/thyroid/predict', methods =['POST'])
+def thyroid_predict():
+    from thyroid_util import pos_weights, neg_weights, all_features, labels, thyroid_cal
+
+    user_input = request.form.getlist("Thyroid")
+
+    results = thyroid_cal(pos_weights, neg_weights, user_input, labels)
+    
+    return render_template('thyroid.html', result = results)
+
 		
 if __name__ == "__main__":
     app.run()
