@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request, render_template
-from ovary_utili import my_function, positive, negative, final_labels
 import numpy as np
 
 app = Flask(__name__)
@@ -16,6 +15,7 @@ def ovary():
 def ovary_predict():
     # Put all form entries values in a list 
     features = request.form.getlist("Tumor")
+    from ovary_utili import my_function, positive, negative, final_labels
 
     all_features = ['solid', 'solid_necrosis','cystic','unilocular','honeycomb','vegetations', 'papillary','multi','hypointese','calcification','haemo','dark','fat','diffusion','endo']
     postive_features = [1 if feature in features else 0 for feature in all_features]
