@@ -12,7 +12,7 @@
     <!-- Nav bar -->  
 <nav class="navbar navbar-dark bg-dark shadow-sm">
   <div class="container">
-    <span class="navbar-brand d-flex align-items-center" href="#"><strong>Tumor predictions</strong></span>
+    <span class="navbar-brand d-flex align-items-center" href="{{ url_for('welcome') }}"><strong>Tumor predictions</strong></span>
   </div>
 </nav>
 <!-- Nav bar -->
@@ -177,7 +177,7 @@
       <h1 class="fw-light">Prediction with given imaging features</h1>
       <p class="lead text-muted">With the application of the Bayesian theorem, we aim to convert the prior probability of the given disease to its posterior probability considering the imaging features provided.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">More info here</a>
+        <a href="{{ url_for('more_info') }}" class="btn btn-primary my-2">More info here</a>
         <a href="#" class="btn btn-secondary my-2">Disclaimer</a>
       </p>
     </div>
