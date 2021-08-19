@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tumor predictions</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	</head>
+	<body>
+    
+    <!-- Nav bar -->  
+<nav class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <span class="navbar-brand d-flex align-items-center" href="{{ url_for('welcome') }}"><strong>Tumor predictions</strong></span>
+  </div>
+</nav>
+<!-- Nav bar -->
+ 
+  <section>
+     <div class="pogo py-5 container" >
+       
+      
+</div><!-- Pogo ends here -->
+</section> <!-- Pogo ends here -->
+<div class="p-2" style="margin:0 auto; max-width: 1200px; font-weight: 400; font-size: 1.1rem; line-height: 1.8; text-align: justify;">
+    <p class="text-justify">
+      The objective of this project is to help radiologists organise their differential diagnosis in cases where the radiological findings are not specific.<br><br>
+It applies a dedicated mathematical algorithm to match the radiological features of the case in question with the common diseases in that particular body section or organ. The result is then shown as a list of diseases in descending order of importance based on their probabilities.<br><br>
+All that the user needs to do is to tick the variables that exist in the system and click on Predict.<br><br>
+It is important to stress that the degree of matching in this application does not depend on the prevalence of the diseases in the community. So, clinical assessment is always required to check the result and make sense of it.<br><br>
+The project is in the early stage of development and it still requires a stronger database to gain more accuracy and to cover more fields in radiology. However, we hope that many doctors and health professionals will find it helpful in their work. Sometimes, it has artefacts in the result like any other automated algorithm but hopefully, this should not affect the overall performance.
+</p>  
+  </div>
+  <!--info ends -->
+
+
+  <!-- footer -->
+  
+  <!-- End of everything -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	</body>
+</html>
