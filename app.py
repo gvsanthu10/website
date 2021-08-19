@@ -7,6 +7,10 @@ app = Flask(__name__)
 def welcome():
 	return render_template('index.html')
 
+@app.route('/moreinfo')
+def more_info():
+	return render_template('more_info.html')    
+
 @app.route('/ovary')
 def ovary():
 	return render_template('ovary.html', data={})
