@@ -9,7 +9,11 @@ def welcome():
 
 @app.route('/moreinfo')
 def more_info():
-	return render_template('more_info.html')    
+	return render_template('more_info.html')
+
+@app.route('/disclaimer')
+def disclaimer():
+	return render_template('disclaimer.html')       
 
 @app.route('/ovary')
 def ovary():
