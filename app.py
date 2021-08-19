@@ -48,6 +48,26 @@ def thyroid_predict():
     
     return render_template('thyroid.html', result = results)
 
+@app.route('/adultwhitematter')
+def whitematter():
+    return render_template('whitematter.html', data={})
+
+@app.route('/adultwhitematter/predict', methods =['POST'])
+def whitematter_predict():
+    from wm_util import  positive, negative, all_features, labels, prevalence, whitemattet_calculator
+
+    user_input = request.form.getlist("wm")
+    
+    result1 =  whitemattet_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    first = {'Type': 'Score'} 
+    
+    if len(user_input) != 0:
+        return render_template('whitematter.html', data =  {**first, **result1})
+
+    else:
+        return render_template('whitematter.html', 
+                               data = {**first, **result1})
+
 		
 if __name__ == "__main__":
     app.run()
