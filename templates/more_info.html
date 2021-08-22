@@ -26,18 +26,28 @@
 <div class="p-2" style="margin:0 auto; max-width: 1200px; font-weight: 400; font-size: 1.1rem; line-height: 1.8; text-align: justify;">
     <p class="text-justify">
       The aim of this project is to work out the diagnosis by calculating the probability of various diseases given a set of radiological findings. <br>
-Naturally, Bayes theorem could be used to calculate the probabilities. Bayes theorem asserts that the probability of a disease can be calculated if we know the prevalence of the disease in the general population and the conditional probability of the radiological sign given to that disease.  The conditional probability of the sign given the disease is simply the sensitivity of that sign to the disease. In other words, if we know the sensitivities of the different radiological signs in different diseases, we can calculate the probability of each disease given a particular set of radiological signs.
-
+ 
+ Naturally, Bayes' theorem could be used to calculate the probabilities. 
+	    Bayes' theorem asserts that the probability of a disease can be calculated if we know the prevalence of the disease in the general population 
+	    and the conditional probability of the radiological sign given that disease.  The conditional probability of the sign given the disease is simply 
+	    the sensitivity of that sign to the disease. In other words, if we know the sensitivities of the different radiological signs in different diseases, 
+	    we can calculate the probability of each disease given a particular set of radiological signs according to the following equation:
 </p>  
 <img src="https://raw.githubusercontent.com/gvsanthu10/website/main/images/b_equation.png" class="img-fluid" alt="bayesian theory equation" style="max-width: 40%;">
 
 <p class="text-justify">
-  Where <i>prevalence<sub>i</sub></i> is the frequency of the disease (i), <i>product<sub>i</sub></i> is the multiplication of the sensitivities of all findings that already exist in our query case for the disease and finally, N is the total number of diseases.
+  Where <i>prevalence<sub>i</sub></i> is the frequency of the disease (i), <i>product<sub>i</sub></i> is the multiplication of the sensitivities of 
+	all findings that already exist in our query case for the disease and finally, N is the total number of diseases.
   <br>
 However, two potentials drawbacks may arise when strictly applying the above equation: <br>
-Firstly, suppose one or more findings in our query case is not normally associated with a particular disease (literally the sensitivity of those findings=0) what will be the probability of that disease given those findings? Well, the nominator in the above equation becomes zero because at least one sensitivity of those findings will be equal to zero leading to a zero  probability. But having a zero probability of a disease is not a generally desirable thing. So we require that the probability of all diseases can not be zero.
+Firstly, suppose one or more findings in our query case is not normally associated with a particular disease (literally the sensitivity of those findings=0) 
+	what will be the probability of that disease given those findings? Well, the nominator in the above equation simply becomes zero because at least one 
+	sensitivity of those findings will be equal to zero leading to a zero  probability. But having a zero probability of a disease is not  generally a desirable 
+	thing. So we require that the probability of all diseases can not be zero.
 <br>
-Secondly, suppose on the other hand that our query case has no particular finding that happens to be so specific for a particular disease, would not it intuitively mean that the odds of that disease is reduced when that specific variable does not exist in our query case?  Obviously, the above formula does not reflect that requirement either.
+ Secondly, suppose on the other hand that our query case has no particular finding that happens to be so specific for 
+	a particular disease, wouldn't it intuitively mean that the odds of that disease is reduced when that specific variable does not exist in our query case?  
+	Obviously the above formula does not reflect that requirement either.
 <br>
 To overcome these problems, the following modification is introduced where the <i>product<sub>i</sub></i> is replaced by:
 </p>
