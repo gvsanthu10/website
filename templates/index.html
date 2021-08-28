@@ -24,7 +24,7 @@
     <!-- Just an image -->
 <nav class="navbar navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ url_for('welcome') }}">
       <img
         src="https://raw.githubusercontent.com/gvsanthu10/website/main/images/logo.png"
         height="20"
@@ -36,9 +36,25 @@
   </div>
 </nav>
 
+  <!--############################################################################################################### -->
 
-<div class="container" style="padding: 20px;">  <!--Empty div to fill the gap -->
-</div>
+  <div class="container" style="padding: 20px;">  <!--Empty div to fill the gap -->
+  </div>
+    <!--############################################################################################################### -->
+
+  <!--############################################################################################################### -->
+  <div class="container">
+    <!--bread crumb -->
+   
+    <nav aria-label="breadcrumb">
+     <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="{{ url_for('welcome') }}">Home</a></li>
+     </ol>
+   </nav>
+   
+   </div>
+    <!--bread crumb ends -->
+     <!--############################################################################################################### -->
 
 <div class="container">
 
