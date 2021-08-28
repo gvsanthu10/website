@@ -76,6 +76,28 @@ def whitematter_predict():
         return render_template('whitematter.html', 
                                data = {**first, **result1})
 
+
+
+@app.route('/supra')
+def supra():
+	return render_template('supratentorial.html', data={})
+
+@app.route('/supra/predict', methods =['POST'])
+def supratentorial_predict():
+    from supra_util import  positive, negative, all_features, labels, prevalence, supra_calculator
+
+    user_input = request.form.getlist("supra")
+    
+    result1 =  supra_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    first = {'Type': 'Score'} 
+    
+    if len(user_input) != 0:
+        return render_template('supratentorial.html', data =  {**first, **result1})
+
+    else:
+        return render_template('supratentorial.html', 
+                               data = {**first, **result1})
+
 		
 if __name__ == "__main__":
     app.run()
