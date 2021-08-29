@@ -71,7 +71,7 @@
     <!-- Just an image -->
 <nav class="navbar navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ url_for('welcome') }}">
       <img
         src="https://raw.githubusercontent.com/gvsanthu10/website/main/images/logo.png"
         height="20"
@@ -92,7 +92,7 @@
 
  <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('welcome') }}">Home</a></li>
     <li class="breadcrumb-item">Neuro</li>
     <li class="breadcrumb-item">Mass</li>
     <li class="breadcrumb-item">Intra-axial</li>
