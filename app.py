@@ -2,19 +2,23 @@ from flask import Flask, jsonify, request, render_template
 import numpy as np
 
 app = Flask(__name__)
-		
+
+#Home page
 @app.route('/')
 def welcome():
 	return render_template('index.html')
 
+#more info
 @app.route('/moreinfo')
 def more_info():
 	return render_template('more_info.html')
 
+#disclaimer
 @app.route('/disclaimer')
 def disclaimer():
 	return render_template('disclaimer.html')       
 
+#ovary 
 @app.route('/ovary')
 def ovary():
 	return render_template('ovary.html', data={})
@@ -41,7 +45,7 @@ def ovary_predict():
         return render_template('ovary.html', 
                                data = {**first, **result1})
 
-
+#thyroid
 @app.route('/thyroid')
 def thyroid():
     return render_template('thyroid.html')
@@ -56,6 +60,7 @@ def thyroid_predict():
     
     return render_template('thyroid.html', result = results)
 
+#adult white matter
 @app.route('/adultwhitematter')
 def whitematter():
     return render_template('whitematter.html', data={})
@@ -76,8 +81,7 @@ def whitematter_predict():
         return render_template('whitematter.html', 
                                data = {**first, **result1})
 
-
-
+#supretentorial mass
 @app.route('/supra')
 def supra():
 	return render_template('supratentorial.html', data={})
@@ -96,6 +100,27 @@ def supratentorial_predict():
 
     else:
         return render_template('supratentorial.html', 
+                               data = {**first, **result1})
+
+#pediatric white matter
+@app.route('/pediatric')
+def pead_wm():
+	return render_template('pead.html', data={})
+
+@app.route('/pediatric/predict', methods =['POST'])
+def pead_wm_predict():
+    from peds_util import  positive, negative, all_features, labels, prevalence, peads_calculator
+
+    user_input = request.form.getlist("supra")
+    
+    result1 =  peads_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    first = {'Type': 'Score'} 
+        
+    if len(user_input) != 0:
+        return render_template('pead.html', data =  {**first, **result1})
+
+    else:
+        return render_template('pead.html', 
                                data = {**first, **result1})
 
 		
