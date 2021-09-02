@@ -123,6 +123,23 @@ def pead_wm_predict():
         return render_template('pead.html', 
                                data = {**first, **result1})
 
+
+#sellar masses
+@app.route('/sella')
+def sella():
+	return render_template('sella.html', data={})
+
+@app.route('/sella/predict', methods =['POST'])
+def sella_predict():
+    from sella_util import  positive, negative, all_features, labels, prevalence, sella_calculator
+
+    user_input = request.form.getlist("supra")
+        
+    result1 =  sella_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    first = {'Type': 'Score'} 
+        
+    return render_template('sella.html', data = {**first, **result1})
+
 		
 if __name__ == "__main__":
     app.run()
