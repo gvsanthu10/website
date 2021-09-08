@@ -140,6 +140,32 @@ def sella_predict():
         
     return render_template('sella.html', data = {**first, **result1})
 
+#spine 
+@app.route('/spine')
+def spine():
+	return render_template('spine.html', data={})
+
+@app.route('/spine/predict', methods =['POST'])
+def spine_predict():
+    # Put all form entries values in a list 
+    user_input = request.form.getlist("Thyroid")
+    from spine_util import spine_calculator, positive, negative, all_features, labels
+
+
+    result1 =  spine_calculator(user_input, positive, negative, all_features, labels)
+    first = {'Type': 'Score'} 
+
+
+    # Check the output values and retrive the result with html tag based on the value
+    if len(user_input) != 0:
+        return render_template('spine.html', data =  {**first, **result1})
+
+    else:
+        return render_template('spine.html', 
+                               data = {**first, **result1})
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()
