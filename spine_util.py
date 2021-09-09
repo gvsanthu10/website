@@ -48,10 +48,10 @@ def spine_calculator(user_input, positive, negative, all_features, labels):
   
   normalized = pre_normalize/pre_normalize.sum()
   
-  list1, list2 = (list(t) for t in zip(*sorted(zip(normalized, labels))))
+  tuple_list = list(zip(normalized, labels))
   
   result = {}
   for i in range(2):
-    result[str(list2[::-1][i])] = round(list1[::-1][i],5)
+    result[tuple_list[i][1]] = tuple_list[i][0]
   
   return result
