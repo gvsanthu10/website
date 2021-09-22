@@ -166,6 +166,26 @@ def spine_predict():
 
 ###########################################end
 
+#spine 
+@app.route('/infra')
+def infra_intra():
+	return render_template('Infra_intra.html', data={})
+
+@app.route('/infra/predict', methods =['POST'])
+def infra_intraaxial_predict():
+    from infra_util import  positive, negative, all_features, labels, prevalence, infra_intra_axial_calculator
+
+    user_input = request.form.getlist("supra")
+    #print(user_input)
+        
+    result1 =  infra_intra_axial_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    first = {'Type': 'Score'} 
+        
+    return render_template('Infra_intra.html', data = {**first, **result1})
+
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()
