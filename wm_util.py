@@ -1626,7 +1626,7 @@ negative = np.array([[0.98044775, 0.98603411, 0.97937345, 0.98152205, 0.98152205
 
 def whitemattet_calculator(user_input, positive, negative, all_features, labels, prevalence):
   postive_list = [1 if item in user_input else 0 for item in all_features]
-  postive_array = np.array(postive_list).reshape(55,1)
+  postive_array = np.array(postive_list).reshape(55,1)   #change here
   neg_array = 1- postive_array
   
   pos_multi = np.multiply(positive,postive_array)
@@ -1637,6 +1637,7 @@ def whitemattet_calculator(user_input, positive, negative, all_features, labels,
   row_wise_sum = np.prod(total_sum, axis=0)
   
   pre_normalize = np.multiply(row_wise_sum, prevalence)
+  pre_normalize= pre_normalize.reshape(87,) #change here
   normalized = pre_normalize/pre_normalize.sum()
   
   list1, list2 = (list(t) for t in zip(*sorted(zip(normalized, labels))))
