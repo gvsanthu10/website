@@ -166,8 +166,29 @@ def spine_predict():
 
 ###########################################end
 
+#main infra page
+@app.route('/infra')
+def infra():
+	return render_template('infraintra.html', data={})
 
+#infra predictpage
+@app.route('/infra/predict', methods=['GET', 'POST'])
+def infra_predict():
+	
+	#getting userinput
+	user_input = request.form.getlist("infra_intra")
+	
+	#importing data from util
+	from infra_util import positive, negative, all_features, labels, prevalence, infra_intra_axial_calculator
 
+	#empty dict for test
+	result1 = infra_intra_axial_calculator(user_input, positive, negative, all_features, labels, prevalence)
+	#print(result1)
+	del positive; gc.collect(); del negative; gc.collect()
+
+	#Creating labels for google charts
+	first = {'Type': 'Score'} 
+	return render_template('infraintra.html', data =  {**first, **result1})
 
 ###########################################end
 
