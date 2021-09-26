@@ -184,7 +184,6 @@ def infra_predict():
 	#empty dict for test
 	result1 = infra_intra_axial_calculator(user_input, positive, negative, all_features, labels, prevalence)
 	#print(result1)
-	del positive; gc.collect(); del negative; gc.collect()
 
 	#Creating labels for google charts
 	first = {'Type': 'Score'} 
