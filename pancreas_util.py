@@ -115,7 +115,10 @@ negative = np.array([[0.94883101, 0.94601953, 0.94489493, 0.94489493, 0.99381474
         0.99429265, 0.42355723, 0.99429265, 0.99429265, 0.99429265,
         0.99429265]])
 
-def pancreas_calculator(user_input, positive, negative, all_features, labels):
+prevalence = np.array([0.105, 0.063, 0.063, 0.063, 0.063, 0.063, 0.053, 0.053, 0.063,
+       0.063, 0.074, 0.063, 0.063, 0.053, 0.042, 0.053])
+
+def pancreas_calculator(user_input, positive, negative, all_features, labels, prevalence):
   postive_list = [1 if item in user_input else 0 for item in all_features]
   postive_array = np.array(postive_list).reshape(16,1)  #change the number g=here
   neg_array = 1- postive_array
@@ -127,8 +130,8 @@ def pancreas_calculator(user_input, positive, negative, all_features, labels):
   
   row_wise_sum = np.prod(total_sum, axis=0)
   
-  #pre_normalize = np.multiply(row_wise_sum, prevalence)
-  pre_normalize = row_wise_sum
+  pre_normalize = np.multiply(row_wise_sum, prevalence)
+  #pre_normalize = row_wise_sum
   normalized = pre_normalize/pre_normalize.sum()
   
   list1, list2 = (list(t) for t in zip(*sorted(zip(normalized, labels))))
