@@ -231,10 +231,10 @@ def pancreas_predict(): #change here
 
 
 	#importing data from util
-    from pancreas_util import positive, negative, all_features, labels, pancreas_calculator
+    from pancreas_util import positive, negative, all_features, labels, prevalence, pancreas_calculator
 
 	#empty dict for test
-    result1 = pancreas_calculator(user_input, positive, negative, all_features, labels)
+    result1 = pancreas_calculator(user_input, positive, negative, all_features, labels, prevalence)
     #print(user_input)
 
 	#Creating labels for google charts
