@@ -14,8 +14,10 @@ all_features = np.array(['Child', 'Adult', '4thVentricle', 'vermis', 'Solid',
                          'Enhancement', 'Hemorrhage', 'Calcifications', 'fat', 
                          'Diffusion', 'wmedema'], dtype=object)
 
-prevalence = np.array([1.  , 0.3 , 1.  , 1.  , 1.  , 1.  , 1.  , 1.  , 1.  , 0.7 , 0.5 ,
-       0.7 , 0.4 , 1.  , 1.  , 1.75])
+prevalence = np.array([0.11374408, 0.06635071, 0.08530806, 0.05687204, 0.12322275,
+       0.11374408, 0.04739336, 0.06635071, 0.05687204, 0.05687204,
+       0.03317536, 0.03791469, 0.03317536, 0.03317536, 0.03791469,
+       0.03791469])
 
 positive = np.array([[0.96 , 0.21 , 1.01 , 1.01 , 0.96 , 0.86 , 0.085, 0.16 , 0.085,
         0.085, 0.26 , 0.16 , 0.085, 0.46 , 0.16 , 0.96 ],
@@ -108,7 +110,6 @@ negative = np.array([[0.87552553, 0.97277121, 0.86904249, 0.86904249, 0.87552553
         0.94209388, 0.98106915, 0.99665926, 0.91982229, 0.87527912,
         0.99777284, 0.98663705, 0.98106915, 0.99777284, 0.99777284,
         0.85300754]])
-
 
 def infra_intraventricular_calculator(user_input, positive, negative, all_features, labels, prevalence):
   postive_list = [1 if item in user_input else 0 for item in all_features]
