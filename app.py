@@ -295,6 +295,32 @@ def infraintraventricular_predict(): #change here
 
 ###########################################end
 
+#main  page for charii
+@app.route('/charii')  #change here
+def charii(): #change here
+	return render_template('charii.html', data={}) #change here
+
+# predictpage
+@app.route('/charii/predict', methods=['GET', 'POST'])  #change here
+def charii_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from charii_util import positive, negative, all_features, labels, charii_calculator
+
+	#empty dict for test
+    result1 = charii_calculator(user_input, positive, negative, all_features, labels)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('charii.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()
