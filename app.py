@@ -321,6 +321,84 @@ def charii_predict(): #change here
 
 ###########################################end
 
+#main  page for extraaxial
+@app.route('/extraaxial')  #change here
+def extraaxial(): #change here
+	return render_template('extraaxial.html', data={}) #change here
+
+# predictpage
+@app.route('/extraaxial/predict', methods=['GET', 'POST'])  #change here
+def extraaxial_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from extraaxial_util import positive, negative, all_features, labels, prevalence, extraaxial_calculator
+
+	#empty dict for test
+    result1 = extraaxial_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('extraaxial.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
+#main  page for nf
+@app.route('/nf')  #change here
+def nf(): #change here
+	return render_template('nf.html', data={}) #change here
+
+# predictpage
+@app.route('/nf/predict', methods=['GET', 'POST'])  #change here
+def nf_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from nf_util import positive, negative, all_features, labels, nf_calculator
+
+	#empty dict for test
+    result1 = nf_calculator(user_input, positive, negative, all_features, labels)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('nf.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
+#main  page for pineal
+@app.route('/pineal')  #change here
+def pineal(): #change here
+	return render_template('pineal.html', data={}) #change here
+
+# predictpage
+@app.route('/pineal/predict', methods=['GET', 'POST'])  #change here
+def pineal_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from pineal_util import positive, negative, all_features, labels, prevalence, pinear_calculator
+
+	#empty dict for test
+    result1 = pinear_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('pineal.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()
