@@ -399,6 +399,32 @@ def pineal_predict(): #change here
 
 ###########################################end
 
+#main  page for prostate
+@app.route('/prostate')  #change here
+def prostate(): #change here
+	return render_template('prostate.html', data={}) #change here
+
+# predictpage
+@app.route('/prostate/predict', methods=['GET', 'POST'])  #change here
+def prostate_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from prostate_util import positive, negative, all_features, labels, prevalence, prostate_calculator
+
+	#empty dict for test
+    result1 = prostate_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('prostate.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()
