@@ -425,6 +425,85 @@ def prostate_predict(): #change here
 
 ###########################################end
 
+
+#main  page for sol pul nodule
+@app.route('/solpulnodule')  #change here
+def solpulnodule(): #change here
+	return render_template('solpulnodule.html', data={}) #change here
+
+# predictpage
+@app.route('/solpulnodule/predict', methods=['GET', 'POST'])  #change here
+def solpulnodule_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from solpulnodule_util import positive, negative, all_features, labels, solpulnodule_calculator
+
+	#empty dict for test
+    result1 = solpulnodule_calculator(user_input, positive, negative, all_features, labels)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('solpulnodule.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
+#main  page for cpa masses
+@app.route('/cpa')  #change here
+def cpa(): #change here
+	return render_template('cpangle.html', data={}) #change here
+
+# predictpage
+@app.route('/cpa/predict', methods=['GET', 'POST'])  #change here
+def cpangle_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from cpa_util import positive, negative, all_features, labels, prevalence, cpa_calculator
+
+	#empty dict for test
+    result1 = cpa_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('cpangle.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
+#main  page for neuro cystic masses
+@app.route('/neurocystic')  #change here
+def neurocystic(): #change here
+	return render_template('neurocystic.html', data={}) #change here
+
+# predictpage
+@app.route('/neurocystic/predict', methods=['GET', 'POST'])  #change here
+def neurocystic_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    #print(user_input) 
+
+	#importing data from util
+    from neurocystic_util import positive, negative, all_features, labels, prevalence, neurocystic_calculator
+
+	#empty dict for test
+    result1 = neurocystic_calculator(user_input, positive, negative, all_features, labels, prevalence)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('neurocystic.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()

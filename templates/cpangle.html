@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Bayesian predictions</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/gvsanthu10/website/main/images/logo.png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}" /> 
+   <!--   <link rel="stylesheet" href="css/mdb.min.css">   -->
+
+  
+<!-- start of google chart -->  
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawRightY);
+  function drawRightY() {
+    var data = google.visualization.arrayToDataTable([
+  {% for key, value in data.items() %}
+    {% if value is string %}
+      ['{{ key }}', '{{ value }}'],
+    {% else %}
+      ['{{ key }}', {{ value }}],
+    {% endif %}
+  {% endfor %}
+    ]);
+
+    var materialOptions = {
+    chart: {
+      title: 'Probability with scores',
+      chartArea:{left:"10%",top:0,width:"100%",height:"100%"},  
+      height: 500,
+      width: 500
+    },
+    
+    bars: 'horizontal',
+    axes: {
+      y: {
+        0: {side: 'left'}
+      }
+    }
+  };
+  var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
+
+  google.visualization.events.addListener(materialChart, 'error', function (googleError) {
+  google.visualization.errors.removeError(googleError.id);
+  document.getElementById("error_msg").innerHTML = "No chart to display!";
+});
+
+
+  materialChart.draw(data, materialOptions);
+}
+</script>
+<!-- end of google chart -->  
+  
+
+  </head>
+  <body>
+    <!-- Start your project here-->
+
+    <!-- nav bar-->
+    <!-- Just an image -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('welcome') }}">
+      <img
+        src="https://raw.githubusercontent.com/gvsanthu10/website/main/images/logo.png"
+        height="20"
+        alt=""
+        loading="lazy"
+      />
+      <small>Bayesian predictions</small>
+    </a>
+  </div>
+</nav>
+  <!--############################################################################################################### -->
+
+<div class="container" style="padding: 20px;">  <!--Empty div to fill the gap -->
+</div>
+  <!--############################################################################################################### -->
+<div class="container">
+ <!--bread crumb -->
+
+ <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_for('welcome') }}">Home</a></li>
+    <li class="breadcrumb-item">Neuro</li>
+    <li class="breadcrumb-item">Mass</li>
+    <li class="breadcrumb-item active" aria-current="page">CP angle masses</li>
+  </ol>
+</nav>
+
+</div>
+ <!--bread crumb ends -->
+  <!--############################################################################################################### -->
+
+
+<div class="container" style="padding: 20px;">  <!--centering div-->  
+
+          <form action = "{{url_for('cpangle_predict')}}" method ="POST" > <!--XXXXXXXXXXXXXX -->
+      
+          <h3>Select the parameters</h3>
+          <div class="card card-body">
+
+        <div class="form-group">
+          <input type="checkbox" class="form-check-input" id="Icecream" name="Tumor" value = "Icecream" unchecked>
+          <label for="Icecream">"Ice cream on cone" appearance</label>
+         </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Solid" name="Tumor" value = "Solid" unchecked>
+                <label for="Solid">Solid lesion </label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Cystic" name="Tumor" value = "Cystic" unchecked>
+                <label for="Cystic">Cystic lesion</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Crossing" name="Tumor" value = "Crossing" unchecked>
+                <label for="Crossing">Crossing to the middle cranial fossa</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Homogenous" name="Tumor" value = "Homogenous" unchecked>
+                <label for="Homogenous">Homogenous enhancement</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Heterogeneous" name="Tumor" value = "Heterogeneous" unchecked>
+                <label for="Heterogeneous">Heterogeneous enhancement</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Diffusion" name="Tumor" value = "Diffusion" unchecked>
+                <label for="Diffusion">Diffusion restriction</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Calcification" name="Tumor" value = "Calcification" unchecked>
+                <label for="Calcification">Calcification</label>
+              </div>
+        
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Fat" name="Tumor" value = "Fat" unchecked>
+                <label for="Fat">Fat</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Hemorrhagic" name="Tumor" value = "Hemorrhagic" unchecked>
+                <label for="Hemorrhagic">Hemorrhagic or microhemorrhage areas</label>
+              </div>
+
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="tail" name="Tumor" value = "tail" unchecked>
+                <label for="tail">Broad dural base with dural tail</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Leptomeningeal" name="Tumor" value = "Leptomeningeal" unchecked>
+                <label for="Leptomeningeal">Leptomeningeal lesion</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Bilateral" name="Tumor" value = "Bilateral" unchecked>
+                <label for="Bilateral">Bilateral lesions</label>
+              </div>
+
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="jugular" name="Tumor" value = "jugular" unchecked>
+                <label for="jugular">Enlarged jugular bulbs with/without erosion</label>
+              </div>
+        
+        <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="Signal" name="Tumor" value = "Signal" unchecked>
+                <label for="Signal">Signal void within the lesion</label>
+              </div>
+
+          </div>
+        <br>
+					  
+
+        <button type="submit" class="btn btn-primary" style="margin: 10px;">Predict</button>
+      
+      </form>  
+    </div> <!-- div for container -->
+    <!--############################################################################################################### -->
+   
+   <!-- graph starts -->
+    <div class="container" style="margin-top: 30px;">  <!-- gving gap -->
+     <div id="chart_div" style=" width: 100%; margin: auto;"></div>
+   </div>
+   <!-- graph ends -->
+   
+     <!--############################################################################################################### -->
+     <div class="container" style="padding: 20px;">  <!--Empty div to fill the gap -->
+     </div>
+       <!--############################################################################################################### -->
+   
+   
+   <!-- Footer -->
+   <footer class="bg-light text-center text-lg-start">
+     <!-- Copyright -->
+     <div class="text-center p-3" style="background-color: rgba(230, 230, 230, 0.2);">
+       © 2021 Copyright:
+       <a class="text-dark" href="https://gvsanthu10.github.io/">Developed by Dr Santhosh and Dr Adel</a>
+     </div>
+     <!-- Copyright -->
+   </footer>
+       <!-- End your project here-->
+   
+   
+      <script type="text/javascript" src="{{url_for('static', filename='js/mdb.min.js')}}"></script>  
+    <!--       <script src="js/mdb.min.js"></script>   -->
+       <!-- Custom scripts -->
+       <script type="text/javascript"></script>
+     </body>
+   </html>
+   
