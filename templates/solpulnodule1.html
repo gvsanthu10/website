@@ -93,7 +93,7 @@
     <li class="breadcrumb-item"><a href="{{ url_for('welcome') }}">Home</a></li>
     <li class="breadcrumb-item">Thoracic</li>
     <li class="breadcrumb-item">Pulmonary nodule</li>
-    <li class="breadcrumb-item active" aria-current="page">Cavitating</li>
+    <li class="breadcrumb-item active" aria-current="page">Solid</li>
   </ol>
 </nav>
 
@@ -104,60 +104,153 @@
 
 <div class="container" style="padding: 20px;">  <!--centering div-->  
 
-          <form action = "{{url_for('solpulnodule_predict')}}" method ="POST" >
+          <form action = "{{url_for('solpul_predict')}}" method ="POST" >
       
           <h3>Select the parameters</h3>
           <div class="card card-body">
 
             <div class="form-group">
-              <h6>Wall thickness</h6>
+              <h6>Size</h6>
              </div>
 
             <div class="form-group">
               <input type="checkbox" class="form-check-input" id="4" name="Tumor" value = "4" unchecked>
-              <label for="4">Wall thickness less than 4 mm</label>
+              <label for="4">Less than 4 mm</label>
              </div>
         
             <div class="form-group">
-                    <input type="checkbox" class="form-check-input" id="4to15" name="Tumor" value = "4to15" unchecked>
-                    <label for="4to15">Wall thickness 4-15 mm</label>
+                    <input type="checkbox" class="form-check-input" id="4to7" name="Tumor" value = "4to7" unchecked>
+                    <label for="4to7">4-7 mm</label>
                   </div>
         
             <div class="form-group">
-                    <input type="checkbox" class="form-check-input" id="15" name="Tumor" value = "15" unchecked>
-                    <label for="15">Wall thickness more than 15 mm</label>
+                    <input type="checkbox" class="form-check-input" id="8to20" name="Tumor" value = "8to20" unchecked>
+                    <label for="8to20">8-20 mm</label>
+                  </div>
+            
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="20" name="Tumor" value = "20" unchecked>
+                    <label for="20">More than 20 mm</label>
                   </div>
             
                   <br>
 
                   <div class="form-group">
-                    <h6>Lining(inner)</h6>
+                    <h6>Calcifications</h6>
                    </div>
         
             <div class="form-group">
-                    <input type="checkbox" class="form-check-input" id="Smooth" name="Tumor" value = "Smooth" unchecked>
-                    <label for="Smooth">Smooth</label>
+                    <input type="checkbox" class="form-check-input" id="Nocal" name="Tumor" value = "Nocal" unchecked>
+                    <label for="Nocal">No Calcifications</label>
                   </div>
         
             <div class="form-group">
-                    <input type="checkbox" class="form-check-input" id="Nodular" name="Tumor" value = "Nodular" unchecked>
-                    <label for="Nodular">Nodular</label>
+                    <input type="checkbox" class="form-check-input" id="Diffuse" name="Tumor" value = "Diffuse" unchecked>
+                    <label for="Diffuse">Diffuse</label>
+                  </div>
+
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Central" name="Tumor" value = "Central" unchecked>
+                    <label for="Central">Central</label>
+                  </div>
+              
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Ring" name="Tumor" value = "Ring" unchecked>
+                    <label for="Ring">Ring like</label>
+                  </div>
+
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Concentric" name="Tumor" value = "Concentric" unchecked>
+                    <label for="Concentric">Concentric</label>
+                  </div>
+
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Popcorn" name="Tumor" value = "Popcorn" unchecked>
+                    <label for="Popcorn">Popcorn</label>
+                  </div>
+
+          <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Strippled" name="Tumor" value = "Strippled" unchecked>
+                    <label for="Strippled">Strippled</label>
+                  </div>
+
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Eccentric" name="Tumor" value = "Eccentric" unchecked>
+                    <label for="Eccentric">Eccentric</label>
                   </div>
 
                   <br>
 
                   <div class="form-group">
-                    <h6>Margins(outer)</h6>
+                    <h6>Fat</h6>
+                   </div>
+        
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="fatpresent" name="Tumor" value = "fatpresent" unchecked>
+                    <label for="fatpresent">Present</label>
+                  </div>
+        
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="fatabsent" name="Tumor" value = "fatabsent" unchecked>
+                    <label for="fatabsent">Absent</label>
+                  </div>
+
+                  <br>
+
+                  <div class="form-group">
+                    <h6>Margins</h6>
                    </div>
         
             <div class="form-group">
                     <input type="checkbox" class="form-check-input" id="Smmothmargin" name="Tumor" value = "Smmothmargin" unchecked>
-                    <label for="Smmothmargin">Smooth</label>
+                    <label for="Smmothmargin">Smooth, well defined</label>
                   </div>
         
             <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Lobulated" name="Tumor" value = "Lobulated" unchecked>
+                    <label for="Lobulated">Lobulated</label>
+                  </div>
+
+            <div class="form-group">
                     <input type="checkbox" class="form-check-input" id="Spiculated" name="Tumor" value = "Spiculated" unchecked>
                     <label for="Spiculated">Spiculated</label>
+                  </div>
+
+                  <br>
+
+                  <div class="form-group">
+                    <h6>Air bronchogram</h6>
+                   </div>
+        
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="airpresent" name="Tumor" value = "airpresent" unchecked>
+                    <label for="airpresent">Present</label>
+                  </div>
+        
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="airabsent" name="Tumor" value = "airabsent" unchecked>
+                    <label for="airabsent">Absent</label>
+                  </div>
+
+                  <br>
+
+                  <div class="form-group">
+                    <h6>Solid and ground glass appearance</h6>
+                   </div>
+        
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="Solid" name="Tumor" value = "Solid" unchecked>
+                    <label for="Solid">Solid lesion with no GG</label>
+                  </div>
+        
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="onglygg" name="Tumor" value = "onglygg" unchecked>
+                    <label for="onglygg">Only GG with no solid lesion</label>
+                  </div>
+
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="partsolid" name="Tumor" value = "partsolid" unchecked>
+                    <label for="partsolid">Partially solid and partially GG</label>
                   </div>
         
           </div>

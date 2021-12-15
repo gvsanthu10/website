@@ -504,6 +504,32 @@ def neurocystic_predict(): #change here
 
 ###########################################end
 
+#main  page for solid pul nodule1
+@app.route('/solpulnodule1')  #change here
+def solpulnodule1(): #change here
+	return render_template('solpulnodule1.html', data={}) #change here
+
+# predictpage
+@app.route('/solpulnodule1/predict', methods=['GET', 'POST'])  #change here
+def solpul_predict(): #change here
+    
+	#geting userinput
+    user_input = request.form.getlist("Tumor")
+    print(user_input) 
+
+	#importing data from util
+    from solidpulnodule1_util import positive, negative, all_features, labels, solpulnodule1_calculator
+
+	#empty dict for test
+    result1 = solpulnodule1_calculator(user_input, positive, negative, all_features, labels)
+    
+
+	#Creating labels for google charts
+    first = {'Type': 'Score'} 
+    return render_template('solpulnodule1.html', data =  {**first, **result1}) #change here
+
+###########################################end
+
 		
 if __name__ == "__main__":
     app.run()
