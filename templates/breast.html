@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Bayesian predictions</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/gvsanthu10/website/main/images/logo.png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}" /> 
+<!--  <link rel="stylesheet" href="css/mdb.min.css">  -->
+  
+<!-- start of google chart -->  
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+    google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        {% for key, value in data.items() %}
+    {% if value is string %}
+      ['{{ key }}', '{{ value }}'],
+    {% else %}
+      ['{{ key }}', {{ value }}],
+    {% endif %}
+  {% endfor %}
+        ]);
+
+        var options = {
+        width: 300,
+        height: 300,
+        colors: ['#1266f1', '#1266f1','#1266f1',],
+          chart: {
+            title: 'Predictions',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        
+        google.visualization.events.addListener(chart, 'error', function (googleError) {
+      google.visualization.errors.removeError(googleError.id);
+      document.getElementById("error_msg").innerHTML = "Message removed = '" + googleError.message + "'";
+  });
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+     
+      }
+    
+    </script>
+<!-- end of google chart -->  
+  
+
+  </head>
+  <body>
+    <!-- Start your project here-->
+
+    <!-- nav bar-->
+    <!-- Just an image -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('welcome') }}">
+      <img
+        src="https://raw.githubusercontent.com/gvsanthu10/website/main/images/logo.png"
+        height="20"
+        alt=""
+        loading="lazy"
+      />
+      <small>Bayesian predictions</small>
+    </a>
+  </div>
+</nav>
+  <!--############################################################################################################### -->
+
+<div class="container" style="padding: 20px;">  <!--Empty div to fill the gap -->
+</div>
+  <!--############################################################################################################### -->
+<div class="container">
+ <!--bread crumb -->
+
+ <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_for('welcome') }}">Home</a></li>
+    <li class="breadcrumb-item">Others</li>
+    <li class="breadcrumb-item active" aria-current="page">Ultrasound of breast lesions</li>
+  </ol>
+</nav>
+
+</div>
+ <!--bread crumb ends -->
+  <!--############################################################################################################### -->
+
+
+<div class="container" style="padding: 20px;">  <!--centering div-->  
+
+          <form action = "{{url_for('breast_predict')}}" method ="POST" >
+      
+          <h3>Select the parameters</h3>
+          <div class="card card-body">
+            
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="macro" name="Tumor" value = "macro" unchecked>
+                  <label for="macro">Macrolobulations</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="micro" name="Tumor" value = "micro" unchecked>
+                  <label for="micro">Microlobulations</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="well" name="Tumor" value = "well" unchecked>
+                  <label for="well">Well circumscribed</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="spiculations" name="Tumor" value = "spiculations" unchecked>
+                  <label for="spiculations">Sonographic spiculations</label>
+                 </div>
+              </div>
+            </div>
+
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Angular" name="Tumor" value = "Angular" unchecked>
+                  <label for="Angular">Angular margins</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Noangular" name="Tumor" value = "Noangular" unchecked>
+                  <label for="Noangular">No angular margins</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Thick" name="Tumor" value = "Thick" unchecked>
+                  <label for="Thick">Thick hyperechoic halo</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Thin" name="Tumor" value = "Thin" unchecked>
+                  <label for="Thin">Thin halo</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="taller" name="Tumor" value = "taller" unchecked>
+                  <label for="taller">Taller than wide</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="wider" name="Tumor" value = "wider" unchecked>
+                  <label for="wider">Wider than tall</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="hypoechoic" name="Tumor" value = "hypoechoic" unchecked>
+                  <label for="hypoechoic">Markedly hypoechoic</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="isoechoic" name="Tumor" value = "isoechoic" unchecked>
+                  <label for="isoechoic">Isoechoic or slightly hypoechoic or hyperechoic</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="shadowing" name="Tumor" value = "shadowing" unchecked>
+                  <label for="shadowing">Posterior acoustic shadowing</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="noshadowing" name="Tumor" value = "noshadowing" unchecked>
+                  <label for="noshadowing">No posterior acoustic shadowing</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Heterogeneous" name="Tumor" value = "Heterogeneous" unchecked>
+                  <label for="Heterogeneous">Heterogeneous echotexture </label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Homogeneous" name="Tumor" value = "Homogeneous" unchecked>
+                  <label for="Homogeneous">Homogeneous echotexture </label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="calcificaitons" name="Tumor" value = "calcificaitons" unchecked>
+                  <label for="calcificaitons">Punctate calcificaitons</label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="nocalcificaitons" name="Tumor" value = "nocalcificaitons" unchecked>
+                  <label for="nocalcificaitons">No punctate calcificaitons</label>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-start">
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Internal" name="Tumor" value = "Internal" unchecked>
+                  <label for="Internal">Internal vascularity </label>
+                 </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <input type="checkbox" class="form-check-input" id="Peripheral" name="Tumor" value = "Peripheral" unchecked>
+                  <label for="Peripheral">Peripheral vascularity </label>
+                 </div>
+              </div>
+            </div>
+      
+      
+      
+         </div>
+        <br>
+					  
+
+        <button type="submit" class="btn btn-primary" style="margin: 10px;">Predict</button>
+      
+      </form>  
+    </div> <!-- div for container -->
+  </div>
+    <!--############################################################################################################### -->
+   
+   <!-- graph starts -->
+   <div class="border border-light p-3 mb-4">  
+    <div class="d-flex align-items-center justify-content-center">
+      <div id="chart_div" style="padding: 10px; min-height: 200px"></div>
+    </div>
+ </div> 
+   <!-- graph ends -->
+   
+     <!--############################################################################################################### -->
+     <div class="container" style="padding: 20px;">  <!--Empty div to fill the gap -->
+     </div>
+       <!--############################################################################################################### -->
+   
+   
+   <!-- Footer -->
+   <footer class="bg-light text-center text-lg-start">
+     <!-- Copyright -->
+     <div class="text-center p-3" style="background-color: rgba(230, 230, 230, 0.2);">
+       © 2021 Copyright:
+       <a class="text-dark" href="https://gvsanthu10.github.io/">Developed by Dr Santhosh and Dr Adel</a>
+     </div>
+     <!-- Copyright -->
+   </footer>
+       <!-- End your project here-->
+   
+   
+           <script type="text/javascript" src="{{url_for('static', filename='js/mdb.min.js')}}"></script>  
+  <!--     <script src="js/mdb.min.js"></script>   -->
+       <!-- Custom scripts -->
+       <script type="text/javascript"></script>
+     </body>
+   </html>
+   
